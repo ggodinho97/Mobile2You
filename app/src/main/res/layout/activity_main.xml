@@ -4,16 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="false"
     tools:context=".ui.MainActivity">
 
-    <TextView
-        android:id="@+id/tvany"
+    <RelativeLayout
+        android:id="@+id/rlBoxImg"
+        android:layout_width="match_parent"
+        android:layout_height="460dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+    <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/imgBanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/banner"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha=".4"
+            android:background="#000" />
+
+
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvTitle"
+        android:layout_marginBottom="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:text="Gabriel Luiz\nGodinho"
+        android:layout_marginStart="16dp"
+        android:textColor="#FFF"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/tvLikes"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvLikes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="1.2K Likes"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="16dp"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        android:drawableStart="@drawable/cards_heart"
+        android:drawablePadding="4dp"
+        app:layout_constraintBottom_toBottomOf="@+id/rlBoxImg"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tvViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginStart="32dp"
+        tools:text="2055 views"
+        android:drawableStart="@drawable/eye_outline"
+        android:drawablePadding="4dp"
+        android:textColor="#FFF"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/rlBoxImg"
+        app:layout_constraintStart_toEndOf="@+id/tvLikes" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/imgLike"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/cards_heart"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

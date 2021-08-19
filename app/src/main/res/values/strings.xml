@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Mobile2You</string>
+    <string name="voteCounts">%s likes</string>
+    <string name="countViews">%s views</string>
 </resources>
