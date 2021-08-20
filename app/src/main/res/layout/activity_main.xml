@@ -7,79 +7,103 @@
     android:fitsSystemWindows="false"
     tools:context=".ui.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/rlBoxImg"
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="460dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-
-    <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/imgBanner"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            tools:src="@drawable/banner"/>
+            android:layout_height="match_parent">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha=".4"
-            android:background="#000" />
+            <RelativeLayout
+                android:id="@+id/rlBoxImg"
+                android:layout_width="match_parent"
+                android:layout_height="460dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
 
-    </RelativeLayout>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/imgBanner"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/banner"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvTitle"
-        android:layout_marginBottom="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Gabriel Luiz\nGodinho"
-        android:layout_marginStart="16dp"
-        android:textColor="#FFF"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/tvLikes"
-        app:layout_constraintStart_toStartOf="parent"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha=".4"
+                    android:background="#000" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvLikes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="1.2K Likes"
-        android:layout_margin="16dp"
-        android:layout_marginBottom="16dp"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        android:drawableStart="@drawable/cards_heart"
-        android:drawablePadding="4dp"
-        app:layout_constraintBottom_toBottomOf="@+id/rlBoxImg"
-        app:layout_constraintStart_toStartOf="parent"/>
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/tvViews"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:layout_marginStart="32dp"
-        tools:text="2055 views"
-        android:drawableStart="@drawable/eye_outline"
-        android:drawablePadding="4dp"
-        android:textColor="#FFF"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/rlBoxImg"
-        app:layout_constraintStart_toEndOf="@+id/tvLikes" />
+            </RelativeLayout>
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/imgLike"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/cards_heart"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvTitle"
+                android:layout_marginBottom="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Gabriel Luiz\nGodinho"
+                android:layout_marginStart="16dp"
+                android:textColor="#FFF"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tvLikes"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvLikes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="1.2K Likes"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="16dp"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                android:drawableStart="@drawable/cards_heart"
+                android:drawablePadding="4dp"
+                app:layout_constraintBottom_toBottomOf="@+id/rlBoxImg"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvViews"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginStart="32dp"
+                tools:text="2055 views"
+                android:drawableStart="@drawable/eye_outline"
+                android:drawablePadding="4dp"
+                android:textColor="#FFF"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/rlBoxImg"
+                app:layout_constraintStart_toEndOf="@+id/tvLikes" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imgLike"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/cards_heart"
+                android:layout_marginEnd="16dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvTitle" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:listitem="@layout/item_similar_movie"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rlBoxImg"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
