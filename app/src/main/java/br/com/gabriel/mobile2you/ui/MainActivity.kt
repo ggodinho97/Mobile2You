@@ -6,6 +6,7 @@ import android.widget.Toast
 import br.com.gabriel.mobile2you.R
 import br.com.gabriel.mobile2you.model.Movie
 import br.com.gabriel.mobile2you.model.SimilarMovie
+import br.com.gabriel.mobile2you.ui.adapter.SimilarMovieAdapter
 import br.com.gabriel.mobile2you.utils.Constants
 import br.com.gabriel.mobile2you.viewmodel.MovieViewModel
 import com.bumptech.glide.Glide
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
     private val viewModel: MovieViewModel by viewModel()
     private var isLiked = true
+    private lateinit var adapter: SimilarMovieAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,16 +31,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupView() {
+        adapter = SimilarMovieAdapter()
+        rvSimilarMovie.adapter = adapter
+
         setupListenears()
         getMovie()
     }
 
-    private fun setupListenears() {
+    private fun setupListenears(){
         imgLike.setOnClickListener {
             isLiked = if (isLiked) {
                 imgLike.setImageResource(R.drawable.heart_outline)
                 false
-            }else {
+            } else {
                 imgLike.setImageResource(R.drawable.cards_heart)
                 true
             }
@@ -49,15 +54,7 @@ class MainActivity : AppCompatActivity() {
             viewModel.getMovie(object : Callback<Movie> {
                 override fun onResponse(call: Call<Movie>, response: Response<Movie>) {
                     val movie = response.body()
-
-                    Glide
-                        .with(this@MainActivity)
-                        .load(Constants.BASE_IMAGE_URL + movie?.poster_path )
-                        .into(imgBanner)
-
-                    tvTitle.text = movie?.title
-                    tvLikes.text = getString(R.string.voteCounts, movie?.vote_count)
-                    tvViews.text = getString(R.string.countViews, movie?.popularity)
+                    showMovie(movie)
 
                 }
 
@@ -73,7 +70,9 @@ class MainActivity : AppCompatActivity() {
                     call: Call<SimilarMovie>,
                     response: Response<SimilarMovie>,
                 ) {
-                    Toast.makeText(this@MainActivity, "Sucesso  Filme!", Toast.LENGTH_SHORT).show()
+                    val similar = response.body()
+                    adapter.items = similar?.results?.toMutableList()?: mutableListOf()
+
                 }
 
                 override fun onFailure(call: Call<SimilarMovie>, t: Throwable) {
@@ -85,5 +84,16 @@ class MainActivity : AppCompatActivity() {
 
         }
 
+    private fun showMovie(movie: Movie?) {
+        Glide
+            .with(this@MainActivity)
+            .load(Constants.BASE_IMAGE_URL + movie?.poster_path)
+            .into(imgBanner)
 
+        tvTitle.text = movie?.title
+        tvLikes.text = getString(R.string.voteCounts, movie?.vote_count)
+        tvViews.text = getString(R.string.countViews, movie?.popularity)
     }
+
+
+}
